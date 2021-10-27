@@ -1,3 +1,4 @@
+// Node.js is a runtime environment which executes JavaScript files
 console.log("Welcome to Node Tutorial");
 
 const amount = 12;
