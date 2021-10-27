@@ -29,3 +29,5 @@ fs.readFile("./content/first.txt", "utf-8", (err, result) => {
     );
   });
 });
+
+console.log("Sync vs Async");

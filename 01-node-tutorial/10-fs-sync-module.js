@@ -15,3 +15,5 @@ const thirdappend = fs.appendFileSync(
   "./content/third.txt",
   `---------> This is text appended by Node`
 );
+
+console.log("Sync vs Async");
