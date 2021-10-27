@@ -19,3 +19,19 @@ const lodash = require("lodash");
 const items = [1, [2, [3, [4]]]];
 const oneArray = lodash.flattenDeep(items);
 console.log(oneArray);
+
+// Dev Dependency --- mostly testing tools and nodemon
+// npm i nodemon -D
+
+//  sripts - We can declare commands
+//  sripts - Default
+//  "scripts": {
+//     "test": "echo \"Error: no test specified\" && exit 1"
+//   }
+// User defined commands --> Now instead of running [nodemon app.js] in Terminal, now we can run [npm start]
+// "scripts": {
+// "start": "nodemon app.js"
+// }
+
+// UNINSTALL
+// npm uninstall nodemon
