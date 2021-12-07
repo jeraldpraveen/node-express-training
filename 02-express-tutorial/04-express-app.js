@@ -5,6 +5,8 @@ const app = express();
 app.use(express.static("./navbar-app"));
 
 app.get("/", (req, res) => {
+  // Server side rendering
+  // Next line No need if express.static is used and index.html file exists
   res.sendFile(path.resolve(__dirname, "./navbar-app/index.html"));
 });
 
