@@ -1,2 +1,2 @@
 console.log("Welcome To Express");
-require("./05-json-basics");
+require("./06-params-queryStrings");
