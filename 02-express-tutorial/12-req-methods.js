@@ -31,5 +31,18 @@ app.post("/login", (req, res) => {
   }
   res.status(401).send("Please provide Name");
 });
+// POST FOR POSTMAN APP
+app.post("/api/postman/people", (req, res) => {
+  const { name } = req.body;
+  if (!name) {
+    return res
+      .status(400)
+      .json({ success: false, msg: "No name sent from POSTMAN" });
+  }
+  res.status(200).send({
+    success: true,
+    data: [...people, { id: people.length + 1, name: name }],
+  });
+});
 
 app.listen(5000);
