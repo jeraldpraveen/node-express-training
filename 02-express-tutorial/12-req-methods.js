@@ -55,5 +55,13 @@ app.put("/api/postman/people/:id", (req, res) => {
   people[index] = { id: id, name: name };
   res.json({ success: true, data: people });
 });
-
+// DELETE FROM POSTMAN APP
+app.delete("/api/postman/people/:id", (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  const newPeople = people.filter(
+    (person) => person.id !== Number(req.params.id)
+  );
+  res.json({ success: true, data: newPeople });
+});
 app.listen(5000);
