@@ -1,19 +1,12 @@
 const express = require("express");
-const app = express();
-const people = require("./data-of-people");
+const router = express.Router();
+const people = require("../data-of-people");
 
-// static assets In Browser --> http://localhost:5000/index.html
-app.use(express.static("./files-for-request-methods"));
-// parse form data
-app.use(express.urlencoded({ extended: false }));
-// parse json
-app.use(express.json());
-// GET FROM BROWSER
-app.get("/api/people", (req, res) => {
+// MOVE ALL ROUTES starting with [['/api/people']] FROM ${12-req-methods.js}
+router.get("/", (req, res) => {
   res.json({ success: true, data: people });
 });
-// POST FROM JAVASCRIPT.HTML
-app.post("/api/people", (req, res) => {
+router.post("/", (req, res) => {
   const { name } = req.body;
   if (!name) {
     return res
@@ -22,18 +15,8 @@ app.post("/api/people", (req, res) => {
   }
   res.status(201).json({ sucess: true, person: name });
 });
-// POST FROM INDEX.HTML
-app.post("/login", (req, res) => {
-  console.log(req.body);
-  // name is from index.html Input Field ${name} property
-  const { name } = req.body;
-  if (name) {
-    return res.status(200).send(`Welcome ${name}`);
-  }
-  res.status(401).send("Please provide Name");
-});
-// POST FROM POSTMAN APP
-app.post("/api/postman/people", (req, res) => {
+// Modified Route "/api/postman/people"===>"/api/people/postman"
+router.post("/postman", (req, res) => {
   const { name } = req.body;
   if (!name) {
     return res
@@ -45,20 +28,19 @@ app.post("/api/postman/people", (req, res) => {
     data: [...people, { id: people.length + 1, name: name }],
   });
 });
-// PUT FROM POSTMAN APP
-app.put("/api/postman/people/:id", (req, res) => {
+// Modified Route "/api/postman/people"===>"/api/people/postman"
+router.put("/postman/:id", (req, res) => {
   const name = req.body.name;
   const id = req.params.id;
   console.log(id, name);
-  // res.json("Update Success");
   const index = people.findIndex((person) => {
     return person.id.toString() === id;
   });
   people[index] = { id: id, name: name };
   res.json({ success: true, data: people });
 });
-// DELETE FROM POSTMAN APP
-app.delete("/api/postman/people/:id", (req, res) => {
+// Modified Route "/api/postman/people"===>"/api/people/postman"
+router.delete("/postman/:id", (req, res) => {
   const id = req.params.id;
   console.log(id);
   const newPeople = people.filter(
@@ -66,4 +48,5 @@ app.delete("/api/postman/people/:id", (req, res) => {
   );
   res.json({ success: true, data: newPeople });
 });
-app.listen(5000);
+
+module.exports = router;
