@@ -6,11 +6,11 @@ const people = require("./data-of-people");
 app.use(express.static("./files-for-request-methods"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-// GET
+// GET FROM BROWSER
 app.get("/api/people", (req, res) => {
   res.json({ success: true, data: people });
 });
-
+// POST FROM JAVASCRIPT.HTML
 app.post("/api/people", (req, res) => {
   const { name } = req.body;
   if (!name) {
@@ -20,8 +20,7 @@ app.post("/api/people", (req, res) => {
   }
   res.status(201).json({ sucess: true, person: name });
 });
-
-// POST
+// POST FROM INDEX.HTML
 app.post("/login", (req, res) => {
   console.log(req.body);
   // name is from index.html Input Field ${name} property
@@ -31,7 +30,7 @@ app.post("/login", (req, res) => {
   }
   res.status(401).send("Please provide Name");
 });
-// POST FOR POSTMAN APP
+// POST FROM POSTMAN APP
 app.post("/api/postman/people", (req, res) => {
   const { name } = req.body;
   if (!name) {
@@ -43,6 +42,18 @@ app.post("/api/postman/people", (req, res) => {
     success: true,
     data: [...people, { id: people.length + 1, name: name }],
   });
+});
+// PUT FROM POSTMAN APP
+app.put("/api/postman/people/:id", (req, res) => {
+  const name = req.body.name;
+  const id = req.params.id;
+  console.log(id, name);
+  // res.json("Update Success");
+  const index = people.findIndex((person) => {
+    return person.id.toString() === id;
+  });
+  people[index] = { id: id, name: name };
+  res.json({ success: true, data: people });
 });
 
 app.listen(5000);
