@@ -1,16 +1,44 @@
+const yargs = require("yargs");
 const getNotes = require("./notes.js");
 
-const msg = getNotes();
-console.log(msg);
+// In Terminal [[node app.js --version]]
+// Customize YARGS
+yargs.version("5.5.5");
 
-console.log(process.argv);
+// add ,rremove,read,list notes
+// Create Add command
+yargs.command({
+  command: "add",
+  describe: "Add a new note",
+  handler: () => {
+    console.log("Adding a New Note");
+  },
+});
+// In Terminal Execute [[node app.js --help]]
+yargs.command({
+  command: "remove",
+  describe: "Remove a note",
+  handler: () => {
+    console.log("Remove a  Note");
+  },
+});
+yargs.command({
+  command: "list",
+  describe: "List all Notes",
+  handler: () => {
+    console.log("List all Notes");
+  },
+});
+yargs.command({
+  command: "read",
+  describe: "Read a note",
+  handler: () => {
+    console.log("Read a  Note");
+  },
+});
+// In Terminal Execute [[node app.js --add]]
+// In Terminal Execute [[node app.js --remove]]
+// In Terminal Execute [[node app.js --read]]
+// In Terminal Execute [[node app.js --list]]
 
-const command = process.argv[2];
-if (command === "add") {
-  console.log("Adding Note");
-} else {
-  console.log("Remove Note");
-}
-
-// In Terminal run [[node app.js add --title='This is my title']]
-// process.argv has to be sliced for --title ---> COMPLEX PROCESS
+console.log(yargs.argv);
