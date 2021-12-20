@@ -1,5 +1,5 @@
 const yargs = require("yargs");
-const getNotes = require("./notes.js");
+const notes = require("./notes.js");
 
 // In Terminal [[node app.js --version]]
 // Customize YARGS
@@ -22,8 +22,7 @@ yargs.command({
   },
   handler: (argv) => {
     console.log("Adding a New Note", argv);
-    console.log("Title : ", argv.title);
-    console.log("Body : ", argv.body);
+    notes.addNote(argv.title, argv.body);
   },
 });
 // In Terminal Execute [[node app.js --help]]
