@@ -38,4 +38,20 @@ const addNote = (title, body) => {
   }
 };
 
-module.exports = { getNotes, addNote };
+const removeNote = (title) => {
+  const notes = loadNotes();
+
+  const notesToKeep = notes.filter((note) => {
+    return note.title !== title;
+  });
+  console.log(notesToKeep);
+
+  if (notes.length > notesToKeep.length) {
+    console.log("Note removed");
+    saveNotes(notesToKeep);
+  } else {
+    console.log("No Note Found");
+  }
+};
+
+module.exports = { getNotes, addNote, removeNote };
