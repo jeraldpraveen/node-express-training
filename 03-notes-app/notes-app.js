@@ -16,8 +16,8 @@ yargs.command({
       demandOption: true,
     },
   },
-  handler: () => {
-    console.log("Adding a New Note");
+  handler: (argv) => {
+    console.log("Adding a New Note", argv);
   },
 });
 // In Terminal Execute [[node app.js --help]]
@@ -47,4 +47,5 @@ yargs.command({
 // In Terminal Execute [[node app.js --read]]
 // In Terminal Execute [[node app.js --list]]
 
-console.log(yargs.argv);
+yargs.parse();
+// console.log(yargs.argv);
