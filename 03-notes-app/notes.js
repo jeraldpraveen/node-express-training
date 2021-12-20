@@ -14,6 +14,18 @@ const loadNotes = () => {
   }
 };
 
-const addNote = (title, body) => {};
+const saveNotes = (notes) => {
+  const dataJSON = JSON.stringify(notes);
+  fs.writeFileSync("notes.json", dataJSON);
+};
+
+const addNote = (title, body) => {
+  const notes = loadNotes();
+  notes.push({
+    title: title,
+    body: body,
+  });
+  saveNotes(notes);
+};
 
 module.exports = { getNotes, addNote };
