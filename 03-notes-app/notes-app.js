@@ -15,9 +15,15 @@ yargs.command({
       describe: "Note Title",
       demandOption: true,
     },
+    body: {
+      describe: "Note Content",
+      demandOption: true,
+    },
   },
   handler: (argv) => {
     console.log("Adding a New Note", argv);
+    console.log("Title : ", argv.title);
+    console.log("Body : ", argv.body);
   },
 });
 // In Terminal Execute [[node app.js --help]]
