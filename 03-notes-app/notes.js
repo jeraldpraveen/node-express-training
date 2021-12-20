@@ -62,4 +62,17 @@ const listAllNotes = () => {
   });
 };
 
-module.exports = { getNotes, addNote, removeNote, listAllNotes };
+const readANote = (title) => {
+  const notes = loadNotes();
+
+  const findTitle = notes.find((note) => {
+    return note.title === title;
+  });
+  if (findTitle) {
+    console.log(`Body contains ${findTitle.body}`);
+  } else {
+    console.log("No Data Found");
+  }
+};
+
+module.exports = { getNotes, addNote, removeNote, listAllNotes, readANote };

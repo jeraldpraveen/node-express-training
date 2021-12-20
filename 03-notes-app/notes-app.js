@@ -53,8 +53,14 @@ yargs.command({
 yargs.command({
   command: "read",
   describe: "Read a note",
-  handler: () => {
-    console.log("Read a  Note");
+  builder: {
+    title: {
+      describe: "Read A Note",
+      demandOption: true,
+    },
+  },
+  handler: (argv) => {
+    notes.readANote(argv.title);
   },
 });
 // In Terminal Execute [[node app.js --add]]
