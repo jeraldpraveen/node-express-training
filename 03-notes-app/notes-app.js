@@ -21,7 +21,6 @@ yargs.command({
     },
   },
   handler: (argv) => {
-    console.log("Adding a New Note", argv);
     notes.addNote(argv.title, argv.body);
   },
 });

@@ -21,11 +21,21 @@ const saveNotes = (notes) => {
 
 const addNote = (title, body) => {
   const notes = loadNotes();
-  notes.push({
-    title: title,
-    body: body,
+
+  const duplicateTitle = notes.filter((note) => {
+    return note.title === title;
   });
-  saveNotes(notes);
+
+  if (duplicateTitle.length === 0) {
+    notes.push({
+      title: title,
+      body: body,
+    });
+    saveNotes(notes);
+    console.log("New Note Added");
+  } else {
+    console.log("Note Title Taken!!!!!!");
+  }
 };
 
 module.exports = { getNotes, addNote };
