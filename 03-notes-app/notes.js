@@ -54,4 +54,12 @@ const removeNote = (title) => {
   }
 };
 
-module.exports = { getNotes, addNote, removeNote };
+const listAllNotes = () => {
+  const notes = loadNotes();
+
+  notes.forEach((note) => {
+    console.log(note.title);
+  });
+};
+
+module.exports = { getNotes, addNote, removeNote, listAllNotes };
