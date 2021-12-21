@@ -31,16 +31,41 @@ request({ url: url, json: true }, (error, response) => {
   }
 });
 
+// const geoCode = (address, callback) => {
+//   setTimeout(() => {
+//     const data = {
+//       longitude: 0,
+//       latitude: 0,
+//     };
+//     callback(data);
+//   }, 2000);
+// };
+
+// geoCode("Tiruppur", (data) => {
+//   console.log(data);
+// });
+
 const geoCode = (address, callback) => {
-  setTimeout(() => {
-    const data = {
-      longitude: 0,
-      latitude: 0,
-    };
-    callback(data);
-  }, 2000);
+  const url =
+    "https://api.mapbox.com/geocoding/v5/mapbox.places/" +
+    encodeURIComponent(address) +
+    ".json?access_token=pk.eyJ1IjoiamVyYWxkcHJhdmVlbiIsImEiOiJja3hnZHU3NWIwc2llMnducHM5OHl1NnJrIn0.kOa9k9gwuG3uMaI6rIGkcQ";
+
+  request({ url: urlGeo, json: true }, (error, response) => {
+    if (error) {
+      callback("Unable to connect to weather server", undefined);
+    } else if (response.body.features.length === 0) {
+      callback("No such Location", undefined);
+    } else {
+      callback(
+        undefined,
+        `Longitude = ${response.body.features[0].center[1]} & Lattitude = ${response.body.features[0].center[1]}`
+      );
+    }
+  });
 };
 
-geoCode("Tiruppur", (data) => {
-  console.log(data);
+geoCode("Tiruppur", (error, response) => {
+  console.log("Error", error);
+  console.log("Data", response);
 });
