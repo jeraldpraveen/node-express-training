@@ -1,12 +1,12 @@
 const request = require("request");
 
 const urlGeo =
-  "https://api.mapbox.com/geocoding/v5/mapbox.places/jsdfs45.json?access_token=pk.eyJ1IjoiamVyYWxkcHJhdmVlbiIsImEiOiJja3hnZHU3NWIwc2llMnducHM5OHl1NnJrIn0.kOa9k9gwuG3uMaI6rIGkcQ";
+  "https://api.mapbox.com/geocoding/v5/mapbox.places/Tiruppur.json?access_token=pk.eyJ1IjoiamVyYWxkcHJhdmVlbiIsImEiOiJja3hnZHU3NWIwc2llMnducHM5OHl1NnJrIn0.kOa9k9gwuG3uMaI6rIGkcQ";
 
 const url =
-  "http://api.weatherstack.com/current?access_key=2de870cf5fdc6af6c32dd9e861bc58d8&query=";
+  "http://api.weatherstack.com/current?access_key=2de870cf5fdc6af6c32dd9e861bc58d8&query=11.1085,77.3411&units=f";
 
-request({ url: urlGeo, json: true }, (errorr, response) => {
+request({ url: urlGeo, json: true }, (error, response) => {
   if (error) {
     console.log("Unable to connect to weather server");
   } else if (response.body.features.length === 0) {
