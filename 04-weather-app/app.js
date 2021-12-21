@@ -30,3 +30,17 @@ request({ url: url, json: true }, (error, response) => {
     console.log(testWork);
   }
 });
+
+const geoCode = (address, callback) => {
+  setTimeout(() => {
+    const data = {
+      longitude: 0,
+      latitude: 0,
+    };
+    callback(data);
+  }, 2000);
+};
+
+geoCode("Tiruppur", (data) => {
+  console.log(data);
+});
